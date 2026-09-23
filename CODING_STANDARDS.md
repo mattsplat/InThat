@@ -1,7 +1,7 @@
 # Coding Standards
 
 ## Scope
-These standards apply to the TestCurrency Android app.
+These standards apply to the HomePrice Android app.
 
 ## Kotlin and Compose
 - Keep composables small and focused on UI rendering.
