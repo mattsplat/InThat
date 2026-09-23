@@ -34,17 +34,19 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import splatdevelopment.homeprice.R
 import splatdevelopment.homeprice.analyzer.PriceAnalyzer
 import splatdevelopment.homeprice.analyzer.PriceTagDetector
 import splatdevelopment.homeprice.domain.ConverterController
 import splatdevelopment.homeprice.domain.DetectedPrice
 import splatdevelopment.homeprice.domain.ScanMode
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
 @Composable
 fun PriceScannerScreen(
@@ -140,7 +142,7 @@ fun PriceScannerScreen(
                 )
             } else {
                 Text(
-                    text = "Camera permission required",
+                    text = stringResource(R.string.scanner_camera_permission),
                     modifier = Modifier.align(Alignment.Center),
                     style = MaterialTheme.typography.bodyLarge
                 )
@@ -154,11 +156,11 @@ fun PriceScannerScreen(
             ) {
                 if (state.selectedPriceId != null) {
                     FilledTonalButton(onClick = controller::resumeScanning) {
-                        Text("Scan Again")
+                        Text(stringResource(R.string.scanner_scan_again))
                     }
                 }
                 Button(onClick = onClose) {
-                    Text("Back to Converter")
+                    Text(stringResource(R.string.scanner_back))
                 }
             }
         }

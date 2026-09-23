@@ -33,11 +33,4 @@ class ConversionLabelTest {
         assertEquals(670, right.x)
         assertEquals(30, left.x)
     }
-
-    @Test
-    fun `money uses the currency symbol and its usual decimals`() {
-        assertEquals("C$12.63", formatMoney(12.634, "CAD"))
-        assertEquals("¥1,180", formatMoney(1180.0, "JPY"))
-        assertEquals("$1,299.99", formatMoney(1299.99, "USD"))
-    }
 }

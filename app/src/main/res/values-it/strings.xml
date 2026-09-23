@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">Da</string>
+    <string name="converter_to">A</string>
+    <string name="converter_swap">Inverti valute</string>
+    <string name="converter_amount">Importo</string>
+    <string name="converter_scan">Scansiona etichetta prezzo</string>
+    <string name="converter_loading">Caricamento del tasso di cambio più recente…</string>
+    <string name="converter_error">Impossibile caricare i tassi di cambio. Controlla la connessione.</string>
+    <string name="converter_updated">Aggiornato: %1$s</string>
+    <string name="converter_help">Scegli due valute e inserisci un importo per confrontarle. Usa la fotocamera per scansionare i prezzi direttamente dalle etichette.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">Preferite</string>
+    <string name="currency_all">Tutte le valute</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">È necessaria l\'autorizzazione per la fotocamera</string>
+    <string name="scanner_scan_again">Scansiona di nuovo</string>
+    <string name="scanner_back">Torna al convertitore</string>
+    <string name="scanner_title">Scansione prezzi</string>
+    <string name="scanner_mode_auto">Auto</string>
+    <string name="scanner_mode_manual">Manuale</string>
+    <string name="scanner_hint_auto">Inquadra un\'etichetta nel riquadro · tocca un prezzo per mettere in pausa</string>
+    <string name="scanner_hint_auto_paused">In pausa · tocca di nuovo il prezzo per riprendere</string>
+    <string name="scanner_hint_manual">Inquadra un\'etichetta nel riquadro, poi tocca il prezzo</string>
+    <string name="scanner_hint_manual_selected">Tocca un altro prezzo o la scheda per riprendere</string>
+    <string name="scanner_loading_rate">Caricamento tasso…</string>
+    <string name="scanner_price_description">Prezzo %1$s</string>
+</resources>

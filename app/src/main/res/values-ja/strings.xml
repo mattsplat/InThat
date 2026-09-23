@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">換算元</string>
+    <string name="converter_to">換算先</string>
+    <string name="converter_swap">通貨を入れ替え</string>
+    <string name="converter_amount">金額</string>
+    <string name="converter_scan">値札をスキャン</string>
+    <string name="converter_loading">最新の為替レートを読み込み中…</string>
+    <string name="converter_error">為替レートを読み込めませんでした。接続を確認してください。</string>
+    <string name="converter_updated">更新: %1$s</string>
+    <string name="converter_help">2つの通貨を選んで金額を入力すると比較できます。カメラで値札の価格を直接スキャンすることもできます。</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">お気に入り</string>
+    <string name="currency_all">すべての通貨</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">カメラへのアクセス許可が必要です</string>
+    <string name="scanner_scan_again">再スキャン</string>
+    <string name="scanner_back">換算画面に戻る</string>
+    <string name="scanner_title">価格をスキャン中</string>
+    <string name="scanner_mode_auto">自動</string>
+    <string name="scanner_mode_manual">手動</string>
+    <string name="scanner_hint_auto">値札を枠内に合わせてください · 価格をタップで一時停止</string>
+    <string name="scanner_hint_auto_paused">一時停止中 · もう一度価格をタップで再開</string>
+    <string name="scanner_hint_manual">値札を枠内に合わせて、価格をタップしてください</string>
+    <string name="scanner_hint_manual_selected">別の価格かカードをタップして再開</string>
+    <string name="scanner_loading_rate">レートを読み込み中…</string>
+    <string name="scanner_price_description">価格 %1$s</string>
+</resources>

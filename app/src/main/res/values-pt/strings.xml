@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">De</string>
+    <string name="converter_to">Para</string>
+    <string name="converter_swap">Inverter moedas</string>
+    <string name="converter_amount">Valor</string>
+    <string name="converter_scan">Escanear etiqueta de preço</string>
+    <string name="converter_loading">Carregando a taxa de câmbio mais recente…</string>
+    <string name="converter_error">Não foi possível carregar as taxas de câmbio. Verifique sua conexão.</string>
+    <string name="converter_updated">Atualizado: %1$s</string>
+    <string name="converter_help">Escolha duas moedas e insira um valor para compará-las. Use a câmera para escanear preços diretamente das etiquetas.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">Favoritas</string>
+    <string name="currency_all">Todas as moedas</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">É necessária permissão para usar a câmera</string>
+    <string name="scanner_scan_again">Escanear novamente</string>
+    <string name="scanner_back">Voltar ao conversor</string>
+    <string name="scanner_title">Escaneando preços</string>
+    <string name="scanner_mode_auto">Auto</string>
+    <string name="scanner_mode_manual">Manual</string>
+    <string name="scanner_hint_auto">Enquadre uma etiqueta de preço · toque em um preço para pausar</string>
+    <string name="scanner_hint_auto_paused">Pausado · toque no preço novamente para continuar</string>
+    <string name="scanner_hint_manual">Enquadre uma etiqueta de preço e toque no preço</string>
+    <string name="scanner_hint_manual_selected">Toque em outro preço ou no cartão para continuar</string>
+    <string name="scanner_loading_rate">Carregando taxa…</string>
+    <string name="scanner_price_description">Preço %1$s</string>
+</resources>

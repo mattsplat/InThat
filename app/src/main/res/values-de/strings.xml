@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">Von</string>
+    <string name="converter_to">Nach</string>
+    <string name="converter_swap">Währungen tauschen</string>
+    <string name="converter_amount">Betrag</string>
+    <string name="converter_scan">Preisschild scannen</string>
+    <string name="converter_loading">Aktueller Wechselkurs wird geladen…</string>
+    <string name="converter_error">Wechselkurse konnten nicht geladen werden. Prüfe deine Verbindung.</string>
+    <string name="converter_updated">Aktualisiert: %1$s</string>
+    <string name="converter_help">Wähle zwei Währungen und gib einen Betrag ein, um sie zu vergleichen. Mit der Kamera kannst du Preise direkt von Etiketten scannen.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">Favoriten</string>
+    <string name="currency_all">Alle Währungen</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">Kamerazugriff erforderlich</string>
+    <string name="scanner_scan_again">Erneut scannen</string>
+    <string name="scanner_back">Zurück zum Umrechner</string>
+    <string name="scanner_title">Preise scannen</string>
+    <string name="scanner_mode_auto">Auto</string>
+    <string name="scanner_mode_manual">Manuell</string>
+    <string name="scanner_hint_auto">Preisschild in den Rahmen halten · Preis antippen zum Pausieren</string>
+    <string name="scanner_hint_auto_paused">Pausiert · Preis erneut antippen zum Fortsetzen</string>
+    <string name="scanner_hint_manual">Preisschild in den Rahmen halten, dann den Preis antippen</string>
+    <string name="scanner_hint_manual_selected">Anderen Preis oder die Karte antippen zum Fortsetzen</string>
+    <string name="scanner_loading_rate">Kurs wird geladen…</string>
+    <string name="scanner_price_description">Preis %1$s</string>
+</resources>

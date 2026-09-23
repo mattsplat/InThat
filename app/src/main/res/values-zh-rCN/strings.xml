@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">源货币</string>
+    <string name="converter_to">目标货币</string>
+    <string name="converter_swap">交换货币</string>
+    <string name="converter_amount">金额</string>
+    <string name="converter_scan">扫描价签</string>
+    <string name="converter_loading">正在加载最新汇率…</string>
+    <string name="converter_error">无法加载汇率。请检查网络连接。</string>
+    <string name="converter_updated">更新时间：%1$s</string>
+    <string name="converter_help">选择两种货币并输入金额即可比较。也可以用相机直接扫描价签上的价格。</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">收藏</string>
+    <string name="currency_all">所有货币</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">需要相机权限</string>
+    <string name="scanner_scan_again">重新扫描</string>
+    <string name="scanner_back">返回换算器</string>
+    <string name="scanner_title">正在扫描价格</string>
+    <string name="scanner_mode_auto">自动</string>
+    <string name="scanner_mode_manual">手动</string>
+    <string name="scanner_hint_auto">将价签放入框内 · 点按价格可暂停</string>
+    <string name="scanner_hint_auto_paused">已暂停 · 再次点按价格继续</string>
+    <string name="scanner_hint_manual">将价签放入框内，然后点按价格</string>
+    <string name="scanner_hint_manual_selected">点按其他价格或卡片继续</string>
+    <string name="scanner_loading_rate">正在加载汇率…</string>
+    <string name="scanner_price_description">价格 %1$s</string>
+</resources>
