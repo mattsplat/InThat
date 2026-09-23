@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testcurrency"
+    namespace = "splatdevelopment.homeprice"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.testcurrency"
+        applicationId = "splatdevelopment.homeprice"
         minSdk = 30
         targetSdk = 35
         versionCode = 1
@@ -60,9 +60,13 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.mlkit.vision)
 
     // ML Kit
     implementation(libs.mlkit.text.recognition)
+
+    // ONNX Runtime (trial price-tag detector)
+    implementation(libs.onnxruntime.android)
 
     testImplementation(libs.junit)
     testImplementation(libs.ktor.client.mock)
