@@ -13,3 +13,11 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Signing keys and their passwords never go in the repo
+*.jks
+*.keystore
+keystore.properties
+
+# Signed builds from Android Studio's "Generate Signed App Bundle / APK"
+/app/release/
