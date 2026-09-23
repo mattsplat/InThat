@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">기준 통화</string>
+    <string name="converter_to">대상 통화</string>
+    <string name="converter_swap">통화 바꾸기</string>
+    <string name="converter_amount">금액</string>
+    <string name="converter_scan">가격표 스캔</string>
+    <string name="converter_loading">최신 환율을 불러오는 중…</string>
+    <string name="converter_error">환율을 불러올 수 없습니다. 연결을 확인하세요.</string>
+    <string name="converter_updated">업데이트: %1$s</string>
+    <string name="converter_help">두 통화를 선택하고 금액을 입력해 비교하세요. 카메라로 가격표의 가격을 바로 스캔할 수도 있습니다.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">즐겨찾기</string>
+    <string name="currency_all">모든 통화</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">카메라 권한이 필요합니다</string>
+    <string name="scanner_scan_again">다시 스캔</string>
+    <string name="scanner_back">변환기로 돌아가기</string>
+    <string name="scanner_title">가격 스캔 중</string>
+    <string name="scanner_mode_auto">자동</string>
+    <string name="scanner_mode_manual">수동</string>
+    <string name="scanner_hint_auto">가격표를 상자 안에 맞추세요 · 가격을 탭하면 일시정지</string>
+    <string name="scanner_hint_auto_paused">일시정지됨 · 가격을 다시 탭하면 재개</string>
+    <string name="scanner_hint_manual">가격표를 상자 안에 맞춘 다음 가격을 탭하세요</string>
+    <string name="scanner_hint_manual_selected">다른 가격이나 카드를 탭해 재개</string>
+    <string name="scanner_loading_rate">환율 불러오는 중…</string>
+    <string name="scanner_price_description">가격 %1$s</string>
+</resources>

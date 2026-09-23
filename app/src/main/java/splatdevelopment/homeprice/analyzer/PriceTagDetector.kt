@@ -31,7 +31,10 @@ class PriceTagDetector(private val context: Context) : Detector<PriceTagDetector
     /** Tag boxes in preview pixels, and how long converting the frame and running the model took. */
     class Result(val tags: List<Rect>, val conversionMs: Long, val inferenceMs: Long)
 
-    private val environment = OrtEnvironment.getEnvironment()
+    private val environment = OrtEnvironment.getEnvironment().apply {
+        // Telemetry's startup provider is removed in the manifest; this also turns off the native side
+        runCatching { setTelemetry(false) }
+    }
     private val executor = Executors.newSingleThreadExecutor()
     private val input = FloatBuffer.allocate(3 * INPUT_SIZE * INPUT_SIZE)
 

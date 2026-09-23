@@ -40,11 +40,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import splatdevelopment.homeprice.domain.ConverterController
 import splatdevelopment.homeprice.data.CurrencyCatalog
+import splatdevelopment.homeprice.domain.ConverterController
+import splatdevelopment.homeprice.model.Currency
+import splatdevelopment.homeprice.ui.formatMoney
+import splatdevelopment.homeprice.ui.formatUpdatedAt
+import splatdevelopment.homeprice.ui.localizedName
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,7 +82,7 @@ fun ConverterScreen(
             Spacer(Modifier.size(8.dp))
             
             Text(
-                text = "HomePrice",
+                text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineMedium
             )
 
@@ -87,12 +92,12 @@ fun ConverterScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     CurrencyDropdown(
-                        label = "From",
+                        label = stringResource(R.string.converter_from),
                         selected = state.fromCurrency,
                         onSelected = controller::updateFromCurrency,
                     )
                     CurrencyDropdown(
-                        label = "To",
+                        label = stringResource(R.string.converter_to),
                         selected = state.toCurrency,
                         onSelected = controller::updateToCurrency,
                     )
@@ -105,7 +110,7 @@ fun ConverterScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.SwapVert,
-                        contentDescription = "Swap currencies",
+                        contentDescription = stringResource(R.string.converter_swap),
                         modifier = Modifier.size(32.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
@@ -115,7 +120,7 @@ fun ConverterScreen(
             OutlinedTextField(
                 value = state.amountInput,
                 onValueChange = controller::updateAmount,
-                label = { Text("Amount") },
+                label = { Text(stringResource(R.string.converter_amount)) },
                 prefix = fromCurrency?.symbol?.let { { Text("$it ") } },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 modifier = Modifier.fillMaxWidth(),
@@ -132,7 +137,7 @@ fun ConverterScreen(
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(Modifier.width(8.dp))
-                Text("Scan Price Tag")
+                Text(stringResource(R.string.converter_scan))
             }
 
             Card(
@@ -145,36 +150,32 @@ fun ConverterScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (state.isLoading) {
-                        Text("Loading latest exchange rate…")
+                        Text(stringResource(R.string.converter_loading))
                     }
-                    state.errorMessage?.let {
-                        Text(it, color = MaterialTheme.colorScheme.error)
+                    if (state.errorMessage != null) {
+                        Text(stringResource(R.string.converter_error), color = MaterialTheme.colorScheme.error)
                     }
                     
                     state.rateAB?.let {
-                        val fromSym = fromCurrency?.symbol ?: ""
-                        val toSym = toCurrency?.symbol ?: ""
-                        Text("${fromSym}1 ${state.fromCurrency} = ${toSym}${formatRate(it, 4)} ${state.toCurrency}")
+                        Text(rateLine(state.fromCurrency, state.toCurrency, it))
                     }
                     state.rateBA?.let {
-                        val fromSym = fromCurrency?.symbol ?: ""
-                        val toSym = toCurrency?.symbol ?: ""
-                        Text("${toSym}1 ${state.toCurrency} = ${fromSym}${formatRate(it, 4)} ${state.fromCurrency}")
+                        Text(rateLine(state.toCurrency, state.fromCurrency, it))
                     }
                     state.convertedAmount?.let {
                         Text(
-                            text = "${toCurrency?.symbol ?: ""}${formatRate(it, 2)} ${state.toCurrency}",
+                            text = "${formatMoney(it, state.toCurrency)} ${state.toCurrency}",
                             style = MaterialTheme.typography.headlineLarge,
                         )
                     }
                     state.updatedAt?.let {
-                        Text("Updated: $it", style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(R.string.converter_updated, formatUpdatedAt(it)), style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
 
             Text(
-                text = "Choose two currencies and enter an amount to compare them. Use the camera to scan prices directly from labels.",
+                text = stringResource(R.string.converter_help),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -204,7 +205,7 @@ private fun CurrencyDropdown(
             modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
-                value = "${selectedCurrency?.symbol ?: ""} ${selectedCurrency?.code ?: ""} - ${selectedCurrency?.name ?: ""}",
+                value = selectedCurrency?.let(::currencyLabel).orEmpty(),
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -219,7 +220,7 @@ private fun CurrencyDropdown(
                 onDismissRequest = { expanded = false }
             ) {
                 Text(
-                    text = "Favorites",
+                    text = stringResource(R.string.currency_favorites),
                     style = MaterialTheme.typography.labelSmall,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     color = MaterialTheme.colorScheme.primary,
@@ -227,7 +228,7 @@ private fun CurrencyDropdown(
                 )
                 CurrencyCatalog.favorites.forEach { currency ->
                     DropdownMenuItem(
-                        text = { Text("${currency.symbol} ${currency.code} - ${currency.name}") },
+                        text = { Text(currencyLabel(currency)) },
                         onClick = {
                             onSelected(currency.code)
                             expanded = false
@@ -239,14 +240,14 @@ private fun CurrencyDropdown(
                 HorizontalDivider()
                 
                 Text(
-                    text = "All Currencies",
+                    text = stringResource(R.string.currency_all),
                     style = MaterialTheme.typography.labelSmall,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     color = MaterialTheme.colorScheme.secondary
                 )
                 CurrencyCatalog.all.forEach { currency ->
                     DropdownMenuItem(
-                        text = { Text("${currency.symbol} ${currency.code} - ${currency.name}") },
+                        text = { Text(currencyLabel(currency)) },
                         onClick = {
                             onSelected(currency.code)
                             expanded = false
@@ -259,7 +260,9 @@ private fun CurrencyDropdown(
     }
 }
 
-private fun formatRate(value: Double, decimals: Int): String {
-    val pattern = "%,.${decimals}f"
-    return String.format(Locale.US, pattern, value)
-}
+/** "$1.00 USD = CA$1.4054 CAD", in the user's number format. */
+private fun rateLine(from: String, to: String, rate: Double): String =
+    "${formatMoney(1.0, from)} $from = ${formatMoney(rate, to, decimals = 4)} $to"
+
+/** "$ USD - US Dollar", with the name in the user's language. */
+private fun currencyLabel(currency: Currency): String = "${currency.symbol} ${currency.code} - ${currency.localizedName()}"

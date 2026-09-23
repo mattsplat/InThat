@@ -44,7 +44,7 @@ class ScannerOverlayTest {
     fun autoMode_tappingACardPausesOnThatPrice() {
         show(autoState)
 
-        composeTestRule.onNodeWithText("C$17.98").performClick()
+        composeTestRule.onNodeWithText(formatMoney(17.98, "CAD")).performClick()
 
         assertEquals(sale.id, selectedId)
     }
@@ -53,15 +53,15 @@ class ScannerOverlayTest {
     fun autoMode_pausedFrameShowsOnlyTheTappedPrice() {
         show(autoState.copy(selectedPriceId = sale.id))
 
-        composeTestRule.onAllNodesWithText("C$17.98").assertCountEquals(1)
-        composeTestRule.onAllNodesWithText("C$23.98").assertCountEquals(0)
+        composeTestRule.onAllNodesWithText(formatMoney(17.98, "CAD")).assertCountEquals(1)
+        composeTestRule.onAllNodesWithText(formatMoney(23.98, "CAD")).assertCountEquals(0)
     }
 
     @Test
     fun autoMode_tappingThePausedCardResumes() {
         show(autoState.copy(selectedPriceId = sale.id))
 
-        composeTestRule.onNodeWithText("C$17.98").performClick()
+        composeTestRule.onNodeWithText(formatMoney(17.98, "CAD")).performClick()
 
         assertEquals(true, resumed)
     }

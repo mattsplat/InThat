@@ -17,6 +17,13 @@
         android:theme="@style/Theme.HomePrice"
         android:usesCleartextTraffic="true"
         >
+        <!-- ONNX Runtime auto-starts Microsoft telemetry (device ID, battery, network) at app
+             launch through this provider; HomePrice doesn't send that, so drop it -->
+        <provider
+            android:name="ai.onnxruntime.TelemetryInitializer"
+            android:authorities="${applicationId}.onnxruntime_telemetry_initializer"
+            tools:node="remove" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

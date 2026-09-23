@@ -1,8 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
 }
+
+// Release signing: environment variables on CI, or a git-ignored keystore.properties locally
+// (see keystore.properties.example). Without either, release builds are left unsigned.
+val keystoreProperties = Properties().apply {
+    rootProject.file("keystore.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
+}
+fun signingValue(name: String): String? = System.getenv(name) ?: keystoreProperties.getProperty(name)
+val releaseStoreFile = signingValue("SIGNING_STORE_FILE")
 
 android {
     namespace = "splatdevelopment.homeprice"
@@ -12,15 +22,34 @@ android {
         applicationId = "splatdevelopment.homeprice"
         minSdk = 30
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // CI passes -PversionCode (the workflow run number) and -PversionName (from the git tag)
+        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 1
+        versionName = findProperty("versionName") as String? ?: "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (releaseStoreFile != null) {
+            create("release") {
+                storeFile = file(releaseStoreFile)
+                storePassword = signingValue("SIGNING_STORE_PASSWORD")
+                keyAlias = signingValue("SIGNING_KEY_ALIAS")
+                keyPassword = signingValue("SIGNING_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("release")
+            // R8 strips unused code and resources: the icon library alone is most of the app's code
+            isMinifyEnabled = true
+            isShrinkResources = true
+            // Phones only; x86 builds are for emulators, which use debug builds
+            ndk {
+                abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -30,6 +59,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    androidResources {
+        // Lists the app's languages for Android 13+'s per-app language setting
+        generateLocaleConfig = true
     }
     buildFeatures {
         compose = true

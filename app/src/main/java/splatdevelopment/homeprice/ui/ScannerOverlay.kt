@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -45,8 +46,8 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import splatdevelopment.homeprice.R
 import splatdevelopment.homeprice.analyzer.PriceTagDetector
-import splatdevelopment.homeprice.data.CurrencyCatalog
 import splatdevelopment.homeprice.domain.ConverterState
 import splatdevelopment.homeprice.domain.DetectedPrice
 import splatdevelopment.homeprice.domain.ScanMode
@@ -116,7 +117,7 @@ fun ScannerOverlay(
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Scanning Prices",
+                    text = stringResource(R.string.scanner_title),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -128,7 +129,7 @@ fun ScannerOverlay(
                 )
                 tagDetections?.let {
                     Text(
-                        text = "Tag detector (trial): ${it.tags.size} found · convert ${it.conversionMs} ms + model ${it.inferenceMs} ms",
+                        text = stringResource(R.string.scanner_tag_detector_debug, it.tags.size, it.conversionMs, it.inferenceMs),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.tertiary
                     )
@@ -140,16 +141,16 @@ fun ScannerOverlay(
                             onClick = { onScanModeChange(mode) },
                             shape = SegmentedButtonDefaults.itemShape(index, ScanMode.entries.size),
                         ) {
-                            Text(mode.name)
+                            Text(stringResource(if (mode == ScanMode.Auto) R.string.scanner_mode_auto else R.string.scanner_mode_manual))
                         }
                     }
                 }
                 Text(
                     text = when {
-                        isAuto && selected != null -> "Paused · tap the price again to resume"
-                        isAuto -> "Fit a price tag in the box · tap a price to pause"
-                        selected == null -> "Fit a price tag in the box, then tap the price"
-                        else -> "Tap another price, or tap the card to resume"
+                        isAuto && selected != null -> stringResource(R.string.scanner_hint_auto_paused)
+                        isAuto -> stringResource(R.string.scanner_hint_auto)
+                        selected == null -> stringResource(R.string.scanner_hint_manual)
+                        else -> stringResource(R.string.scanner_hint_manual_selected)
                     },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -200,6 +201,7 @@ private fun PriceHighlight(
     val bounds = detected.bounds.inflate(TAP_PADDING_PX)
     val color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.inversePrimary
     val shape = RoundedCornerShape(6.dp)
+    val description = stringResource(R.string.scanner_price_description, formatAmount(detected.value))
 
     Box(
         modifier = Modifier
@@ -208,7 +210,7 @@ private fun PriceHighlight(
             .clip(shape)
             .background(color.copy(alpha = if (isSelected) 0.35f else 0.15f))
             .border(if (isSelected) 3.dp else 2.dp, color, shape)
-            .semantics { contentDescription = "Price ${formatAmount(detected.value)}" }
+            .semantics { contentDescription = description }
             .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
     )
 }
@@ -266,7 +268,7 @@ private fun ConversionCard(amount: Double, state: ConverterState, onClick: () ->
     ) {
         Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)) {
             if (rate == null) {
-                Text("Loading rate…", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.scanner_loading_rate), style = MaterialTheme.typography.titleMedium)
             } else {
                 Row {
                     Text(
@@ -294,13 +296,4 @@ private fun ConversionCard(amount: Double, state: ConverterState, onClick: () ->
     }
 }
 
-/** Formats money with the currency's symbol and usual decimals: "C$12.63", "¥1,180". */
-internal fun formatMoney(value: Double, currencyCode: String): String {
-    val decimals = runCatching { java.util.Currency.getInstance(currencyCode).defaultFractionDigits }
-        .getOrDefault(2)
-        .coerceAtLeast(0)
-    val symbol = CurrencyCatalog.supported.find { it.code == currencyCode }?.symbol.orEmpty()
-    return symbol + String.format(Locale.US, "%,.${decimals}f", value)
-}
-
-private fun formatAmount(value: Double): String = String.format(Locale.US, "%,.2f", value)
+private fun formatAmount(value: Double): String = String.format(Locale.getDefault(), "%,.2f", value)

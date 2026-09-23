@@ -12,7 +12,9 @@ class ExampleInstrumentedTest {
 
     @Test
     fun converterScreen_showsTitleAndAmountField() {
-        composeTestRule.onNodeWithText("HomePrice").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Amount").assertIsDisplayed()
+        // Read the app's own strings so the test passes in any device language
+        val activity = composeTestRule.activity
+        composeTestRule.onNodeWithText(activity.getString(R.string.app_name)).assertIsDisplayed()
+        composeTestRule.onNodeWithText(activity.getString(R.string.converter_amount)).assertIsDisplayed()
     }
 }

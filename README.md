@@ -16,6 +16,7 @@ An Android currency converter that can read prices straight off a price tag with
   - **Auto** – the main price on each tag shows its conversion live, no tapping needed. Tap a price to pause on it and tap it again to resume.
   - Barcodes/SKUs, dates, sizes (`10 OZ`, `2L`) and unit prices (`37.9¢`) are filtered out automatically.
 - Light and dark themes, with Material You dynamic color on Android 12+.
+- Available in English, Spanish, French, German, Italian, Portuguese, Japanese, Korean and Simplified Chinese. Currency names, money and dates follow the phone's language, and on Android 13+ you can choose HomePrice's language on its own in Settings → Apps → HomePrice → Language.
 
 ## Tech stack
 

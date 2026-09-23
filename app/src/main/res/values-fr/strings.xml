@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Converter screen -->
+    <string name="converter_from">De</string>
+    <string name="converter_to">Vers</string>
+    <string name="converter_swap">Inverser les devises</string>
+    <string name="converter_amount">Montant</string>
+    <string name="converter_scan">Scanner une étiquette</string>
+    <string name="converter_loading">Chargement du dernier taux de change…</string>
+    <string name="converter_error">Impossible de charger les taux de change. Vérifiez votre connexion.</string>
+    <string name="converter_updated">Mis à jour : %1$s</string>
+    <string name="converter_help">Choisissez deux devises et saisissez un montant pour les comparer. Utilisez l\'appareil photo pour scanner les prix directement sur les étiquettes.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">Favorites</string>
+    <string name="currency_all">Toutes les devises</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">Autorisation d\'accès à l\'appareil photo requise</string>
+    <string name="scanner_scan_again">Scanner à nouveau</string>
+    <string name="scanner_back">Retour au convertisseur</string>
+    <string name="scanner_title">Scan des prix</string>
+    <string name="scanner_mode_auto">Auto</string>
+    <string name="scanner_mode_manual">Manuel</string>
+    <string name="scanner_hint_auto">Cadrez une étiquette dans le cadre · touchez un prix pour mettre en pause</string>
+    <string name="scanner_hint_auto_paused">En pause · touchez à nouveau le prix pour reprendre</string>
+    <string name="scanner_hint_manual">Cadrez une étiquette dans le cadre, puis touchez le prix</string>
+    <string name="scanner_hint_manual_selected">Touchez un autre prix ou la carte pour reprendre</string>
+    <string name="scanner_loading_rate">Chargement du taux…</string>
+    <string name="scanner_price_description">Prix %1$s</string>
+</resources>

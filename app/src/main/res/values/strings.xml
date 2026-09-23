@@ -1,3 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HomePrice</string>
+    <!-- Brand name: the same in every language -->
+    <string name="app_name" translatable="false">HomePrice</string>
+
+    <!-- Developer readout for the trial tag detector; not shown to end users long-term -->
+    <string name="scanner_tag_detector_debug" translatable="false">Tag detector (trial): %1$d found · convert %2$d ms + model %3$d ms</string>
+
+    <!-- Converter screen -->
+    <string name="converter_from">From</string>
+    <string name="converter_to">To</string>
+    <string name="converter_swap">Swap currencies</string>
+    <string name="converter_amount">Amount</string>
+    <string name="converter_scan">Scan Price Tag</string>
+    <string name="converter_loading">Loading latest exchange rate…</string>
+    <string name="converter_error">Couldn\'t load exchange rates. Check your connection.</string>
+    <string name="converter_updated">Updated: %1$s</string>
+    <string name="converter_help">Choose two currencies and enter an amount to compare them. Use the camera to scan prices directly from labels.</string>
+
+    <!-- Currency picker -->
+    <string name="currency_favorites">Favorites</string>
+    <string name="currency_all">All Currencies</string>
+
+    <!-- Price scanner -->
+    <string name="scanner_camera_permission">Camera permission required</string>
+    <string name="scanner_scan_again">Scan Again</string>
+    <string name="scanner_back">Back to Converter</string>
+    <string name="scanner_title">Scanning Prices</string>
+    <string name="scanner_mode_auto">Auto</string>
+    <string name="scanner_mode_manual">Manual</string>
+    <string name="scanner_hint_auto">Fit a price tag in the box · tap a price to pause</string>
+    <string name="scanner_hint_auto_paused">Paused · tap the price again to resume</string>
+    <string name="scanner_hint_manual">Fit a price tag in the box, then tap the price</string>
+    <string name="scanner_hint_manual_selected">Tap another price, or tap the card to resume</string>
+    <string name="scanner_loading_rate">Loading rate…</string>
+    <string name="scanner_price_description">Price %1$s</string>
 </resources>
